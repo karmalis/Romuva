@@ -1,0 +1,24 @@
+//
+// Created by voltairepunk on 2019-12-31.
+//
+
+#ifndef ROMUVA_OPENGLDEFINITIONS_HPP
+#define ROMUVA_OPENGLDEFINITIONS_HPP
+
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+
+#define COLOR_TEXTURE_UNIT              GL_TEXTURE0
+#define COLOR_TEXTURE_UNIT_INDEX        0
+#define NORMAL_TEXTURE_UNIT             GL_TEXTURE2
+#define NORMAL_TEXTURE_UNIT_INDEX       2
+#define RANDOM_TEXTURE_UNIT             GL_TEXTURE3
+#define RANDOM_TEXTURE_UNIT_INDEX       3
+#define DISPLACEMENT_TEXTURE_UNIT       GL_TEXTURE4
+#define DISPLACEMENT_TEXTURE_UNIT_INDEX 4
+#define SHADOW_TEXTURE_UNIT             GL_TEXTURE5
+#define SHADOW_TEXTURE_UNIT_INDEX       5
+#define DEPTH_TEXTURE_UNIT              GL_TEXTURE6
+#define DEPTH_TEXTURE_UNIT_INDEX        6
+
+#endif //ROMUVA_OPENGLDEFINITIONS_HPP
