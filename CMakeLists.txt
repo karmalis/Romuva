@@ -3,6 +3,8 @@ project(romuva)
 
 set(CMAKE_CXX_STANDARD 14)
 
+set(SOME_VAL 0)
+
 #GLFW
 set(OpenGL_GL_PREFERENCE GLVND)
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
@@ -14,8 +16,9 @@ set(GLFW_DIR ${CMAKE_SOURCE_DIR}/vendor/glfw)
 add_subdirectory(${GLFW_DIR})
 
 # GLAD
-set(GLAD_DIR ${CMAKE_SOURCE_DIR}/vendor/glad)
-add_library("glad" ${GLAD_DIR}/build/src/glad.c src/util/Random.cpp src/util/Random.hpp src/input/Input.cpp src/input/Input.hpp src/util/Exceptions.hpp)
+#set(GLAD_DIR ${CMAKE_SOURCE_DIR}/vendor/glad)
+#add_library("glad" ${GLAD_DIR}/build/src/glad.c src/util/Random.cpp src/util/Random.hpp src/input/Input.cpp src/input/Input.hpp src/util/Exceptions.hpp)
+add_subdirectory(vendor/glad)
 
 # ASSIMP
 option(ASSIMP_BUILD_ASSIMP_TOOLS OFF)
@@ -26,7 +29,7 @@ option(ASSIMP_BUILD_STATIC_LIB ON)
 # INCLUDES
 include_directories(
         "${GLFW_DIR}/include"
-        "${GLAD_DIR}/build/include"
+        "${CMAKE_BINARY_DIR}/vendor/glad/include"
         "${CMAKE_SOURCE_DIR}/vendor/assimp/include"
         "${CMAKE_SOURCE_DIR}/vendor/lua/src"
         "${CMAKE_SOURCE_DIR}/vendor/mathfu/include"
@@ -36,6 +39,12 @@ include_directories(
 
 
 add_subdirectory(vendor/assimp)
+# Lua
+file(COPY ${CMAKE_SOURCE_DIR}/extras/cmake/lua DESTINATION ${CMAKE_SOURCE_DIR}/vendor)
+option(LUA_SUPPORT_DL "Support dynamic loading of compiled modules" ON)
+option(LUA_BUILD_AS_CXX "Build lua as C++" ON)
+option(LUA_BUILD_BINARY "Build lua binary" ON)
+option(LUA_BUILD_COMPILER "Build luac compiler" ON)
 add_subdirectory(vendor/lua)
 
 set(THREADS_PREFER_PTHREAD_FLAG ON)
@@ -53,7 +62,29 @@ add_executable(romuva
         src/Active.cpp
         src/log/LogLevel.cpp
         src/log/LogMessage.cpp
-        src/log/LogMessage.hpp src/log/LogSink.cpp src/log/LogSink.hpp src/log/Logger.cpp src/log/Logger.hpp src/video/Shader.cpp src/video/Shader.hpp src/video/Mesh.cpp src/video/Mesh.hpp src/video/Camera.cpp src/video/Camera.hpp src/scripting/LuaModule.cpp src/scripting/LuaModule.hpp src/scripting/LuaContext.cpp src/scripting/LuaContext.hpp src/video/Element2D.cpp src/video/Element2D.hpp src/task/ConcurrentPriorityQueue.cpp src/task/ConcurrentPriorityQueue.hpp src/components/Transform.cpp src/components/Transform.hpp src/components/Camera.cpp src/components/Camera.hpp)
+        src/log/LogMessage.hpp
+        src/log/LogSink.cpp
+        src/log/LogSink.hpp
+        src/log/Logger.cpp
+        src/log/Logger.hpp
+        src/video/Shader.cpp
+        src/video/Shader.hpp
+        src/video/Mesh.cpp
+        src/video/Mesh.hpp
+        src/video/Camera.cpp
+        src/video/Camera.hpp
+        src/scripting/LuaModule.cpp
+        src/scripting/LuaModule.hpp
+        src/scripting/LuaContext.cpp
+        src/scripting/LuaContext.hpp
+        src/video/Element2D.cpp
+        src/video/Element2D.hpp
+        src/task/ConcurrentPriorityQueue.cpp
+        src/task/ConcurrentPriorityQueue.hpp
+        src/components/Transform.cpp
+        src/components/Transform.hpp
+        src/components/Camera.cpp
+        src/components/Camera.hpp)
 
 target_link_libraries(romuva Threads::Threads liblua assimp glfw ${GLFW_LIBRARIES} glad)
 target_include_directories(romuva PRIVATE "${GLFW_DIR}/include")

@@ -71,8 +71,8 @@ namespace Romuva {
 
         int entityCreate(Scripting::LuaState* lstate) {
 
-            auto ** udata = (Entity **) lua_newuserdata(lstate, sizeof(Entity *));
-            udata =
+//            auto ** udata = (Entity **) lua_newuserdata(lstate, sizeof(Entity *));
+//            //udata =
 
             return 0;
         }

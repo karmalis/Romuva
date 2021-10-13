@@ -17,8 +17,6 @@ namespace Romuva {
         class LuaModule : public Core::Module {
         public:
 
-            struct
-
             enum States {
                 INIT,
                 POST_INIT,
