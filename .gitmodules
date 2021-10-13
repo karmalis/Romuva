@@ -10,9 +10,9 @@
 [submodule "vendor/assimp"]
 	path = vendor/assimp
 	url = https://github.com/assimp/assimp
-[submodule "vendor/lua"]
-	path = vendor/lua
-	url = git@github.com:LuaDist/lua.git
 [submodule "vendor/stb"]
 	path = vendor/stb
 	url = git@github.com:nothings/stb.git
+[submodule "vendor/lua"]
+	path = vendor/lua
+	url = https://github.com/lua/lua.git
