@@ -13,6 +13,3 @@
 [submodule "vendor/stb"]
 	path = vendor/stb
 	url = git@github.com:nothings/stb.git
-[submodule "vendor/lua"]
-	path = vendor/lua
-	url = https://github.com/lua/lua.git
